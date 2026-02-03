@@ -21,20 +21,15 @@ pip install torchvision==0.24.0
 pip install openpyxl==3.1.5
 ```
 
-### 1.2 Environment Setup for FLUX.2 [klein]
+### 1.2 Environment Setup for FLUX.1 [dev]
 ```
-conda create --name FLUX.2 python=3.10
+conda create --name FLUX.1 python=3.10
 ```
 
 ```
-conda activate FLUX.2
+conda activate FLUX.1
 ```
 
 ```
 pip install
-```
-
-Due to the current unavailability of the `Flux2KleinPipeline` in the stable PyPI release of the diffusers library, please install it directly from the source repository using: `pip install git+https://github.com/huggingface/diffusers`.
-```
-
 ```
