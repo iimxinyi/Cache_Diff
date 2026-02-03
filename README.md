@@ -33,3 +33,8 @@ conda activate FLUX.2
 ```
 pip install
 ```
+
+Due to the current unavailability of the `Flux2KleinPipeline` in the stable PyPI release of the diffusers library, please install it directly from the source repository using: `pip install git+https://github.com/huggingface/diffusers`.
+```
+
+```
