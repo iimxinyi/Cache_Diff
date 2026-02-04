@@ -724,32 +724,6 @@ class StableDiffusion3Img2ImgPipeline(DiffusionPipeline, SD3LoraLoaderMixin, Fro
     
     # new added ! ! ! ! ! 下箭头
 
-    '''
-    def _image_to_noisy_latent(
-        self,
-        image,  # torch.Tensor, PIL, or preprocessed torch.Tensor
-        timestep: torch.Tensor,  # shape: (1,) or scalar tensor
-        dtype: torch.dtype,
-        device: torch.device,
-        generator: Optional[torch.Generator] = None,
-    ):
-        """
-        Convert ONE preprocessed image tensor (shape [1,3,H,W]) to ONE noisy latent (shape [1,C,h,w])
-        at the given timestep (already corresponding to strength).
-        """
-        # image expected to be torch.Tensor on device
-        if image.shape[1] == self.vae.config.latent_channels:
-            init_latents = image
-        else:
-            init_latents = retrieve_latents(self.vae.encode(image), generator=generator)
-            init_latents = (init_latents - self.vae.config.shift_factor) * self.vae.config.scaling_factor
-
-        noise = randn_tensor(init_latents.shape, generator=generator, device=device, dtype=dtype)
-        noisy_latents = self.scheduler.scale_noise(init_latents, timestep, noise)
-        return noisy_latents
-    '''
-
-
     def _image_to_noisy_latent(
         self,
         image: torch.Tensor,              # expects [1,3,H,W] or [1,C,h,w]
@@ -922,8 +896,10 @@ class StableDiffusion3Img2ImgPipeline(DiffusionPipeline, SD3LoraLoaderMixin, Fro
         mu: Optional[float] = None,
 
         # new added ! ! ! ! ! 下箭头
+        
         ref_noise_mode: Literal["independent", "shared"] = "shared",
         ref_image_aggregation: Literal["mean"] = "mean",
+        
         # new added ! ! ! ! ! 上箭头
     ):
         r"""
@@ -1141,20 +1117,6 @@ class StableDiffusion3Img2ImgPipeline(DiffusionPipeline, SD3LoraLoaderMixin, Fro
         timesteps, num_inference_steps = self.get_timesteps(num_inference_steps, strength, device)
         latent_timestep = timesteps[:1].repeat(batch_size * num_images_per_prompt)
         print(latent_timestep)
-
-        ''' original code
-        # 5. Prepare latent variables
-        if latents is None:
-            latents = self.prepare_latents(
-                image,
-                latent_timestep,
-                batch_size,
-                num_images_per_prompt,
-                prompt_embeds.dtype,
-                device,
-                generator,
-            )
-        '''
 
         # new added ! ! ! ! ! 下箭头
         
