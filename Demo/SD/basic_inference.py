@@ -23,7 +23,7 @@ pipe = StableDiffusion3Pipeline.from_pretrained(model_directory, torch_dtype=tor
 seed = 1
 generator = seed_everywhere(seed)
 total_step = 50
-guidance_scale = 5.0
+guidance_scale = 4.5
 
 # prompts
 prompts = [
