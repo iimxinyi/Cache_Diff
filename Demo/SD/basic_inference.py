@@ -23,7 +23,7 @@ pipe = StableDiffusion3Pipeline.from_pretrained(model_directory, torch_dtype=tor
 seed = 1
 generator = seed_everywhere(seed)
 total_step = 50
-guidance_scale = 4.5 # 这个默认值是4.5-5.0，用来控制生成的图像与提示词的相关性，越大相关性越强，但是图像质量也会下降。后面需要自己微调找到一个还不错的值，个人建议生成缓存图像的guidance_scale偏大，生成用户请求的新图像的guidance_scale偏大（一般不超过7.0）。
+guidance_scale = 4.5  # 这个默认值是4.5-5.0，用来控制生成的图像与提示词的相关性，越大相关性越强，但是图像质量也会下降。后面需要自己微调找到一个还不错的值，个人建议生成缓存图像的guidance_scale偏大，生成用户请求的新图像的guidance_scale偏大（一般不超过7.0）。
 
 # prompts
 prompts = [
