@@ -18,7 +18,11 @@ def seed_everywhere(seed):
 model_directory = "/root/autodl-tmp/stable-diffusion-3.5-large-diffusers"
 
 # Stable Diffusion 3 pipeline
+# if you have enough cuda memory:
 pipe = StableDiffusion3Img2ImgPipeline.from_pretrained(model_directory, torch_dtype=torch.float16, use_safetensors=True).to("cuda")
+# else:
+# pipe = StableDiffusion3Img2ImgPipeline.from_pretrained(model_directory, torch_dtype=torch.float16, use_safetensors=True)
+# pipe.enable_model_cpu_offload()
 
 # Basic parameters
 seed = 1
