@@ -28,7 +28,7 @@ guidance_scale = 5.0  # 这个默认值是4.5-5.0，用来控制生成的图像�
 height = 1024
 width = 1024
 ref_image2 = load_image("./CacheDiff/test2.png").resize((height, width))
-strength = 0.8  # [0.0, 1.0]
+strength = 0.7  # [0.0, 1.0]
 
 # prompts
 ref_prompts = [
